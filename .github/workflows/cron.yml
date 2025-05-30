@@ -1,0 +1,13 @@
+name: Auto Tweet Bot
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  post-tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Vercel endpoint
+        run: |
+          curl -X POST https://twitter-content-automator02.vercel.app/api/cron
