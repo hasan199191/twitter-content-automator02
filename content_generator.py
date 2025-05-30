@@ -27,8 +27,8 @@ class ContentGenerator:
             
         genai.configure(api_key=api_key)
         
-        # Initialize the model
-        self.model = genai.GenerativeModel('gemini-2.0-flash-exp')
+        # Initialize the model (using older model for compatibility)
+        self.model = genai.GenerativeModel('gemini-pro')
         self.logger.info("Gemini AI initialized successfully")
         
     def generate_content(self, project_name: str, website: str, twitter_handle: str, 
