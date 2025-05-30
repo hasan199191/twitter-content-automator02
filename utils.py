@@ -13,26 +13,20 @@ from typing import List, Dict, Optional
 def setup_logging():
     """Setup logging configuration for the application."""
     log_level = os.getenv("LOG_LEVEL", "INFO").upper()
-    log_file = os.getenv("LOG_FILE", "twitter_bot.log")
-    
-    # Create logs directory if it doesn't exist
-    log_dir = os.path.dirname(log_file) if os.path.dirname(log_file) else "."
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir)
-    
+    # log_file = os.getenv("LOG_FILE", "twitter_bot.log")  # Artık kullanılmayacak
+
     # Configure logging format
     log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    
+
     # Setup root logger
     logging.basicConfig(
         level=getattr(logging, log_level),
         format=log_format,
         handlers=[
-            logging.FileHandler(log_file),
             logging.StreamHandler()
         ]
     )
-    
+
     # Reduce noise from external libraries
     logging.getLogger('tweepy').setLevel(logging.WARNING)
     logging.getLogger('urllib3').setLevel(logging.WARNING)
